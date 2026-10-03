@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /donation/create-order/
+Disallow: /donation/save/
+
+Sitemap: https://prajapatifoundation.in/sitemap.xml

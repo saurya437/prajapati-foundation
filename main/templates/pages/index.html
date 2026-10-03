@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block title %}Prajapati Foundation — Kumhar Samaj Ka Sahara{% endblock %}
+{% block meta_description %}<meta name="description" content="Prajapati Foundation — Kumhar (potter) samaj ke liye official sanstha. Education support, kala sanrakshan, artisan support. Donate ya volunteer banein Prajapati Foundation ke saath.">{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
@@ -26,44 +27,17 @@
   </div>
 </div>
 
-<section class="hero-showcase">
+<section class="hero">
   <div class="container">
+    <div class="hero-grid">
 
-    <!-- Framed photo slider: brand-color "matting" around the photo, so any
-         photo size/shape looks intentional — no blur, no crop, always the
-         full image. Auto-shuffles, plus manual prev/next + dot controls. -->
-    <div class="frame-wrap reveal">
-      <div class="hero-frame" id="heroFrame">
-        {% for img in images %}
-        <div class="frame-slide {% if forloop.first %}active{% endif %}">
-          <img class="frame-img" src="{{ img.image.url }}" alt="Prajapati Foundation" {% if not forloop.first %}loading="lazy"{% endif %}>
-        </div>
-        {% empty %}
-        <div class="frame-slide active">
-          <img class="frame-img" src="{% static 'assets/images/hero.jpg' %}" alt="Prajapati Foundation">
-        </div>
-        {% endfor %}
+      <!-- Copy column -->
+      <div class="hero-copy reveal">
+        <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+        <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
 
-        {% if images|length > 1 %}
-        <button type="button" class="frame-nav frame-prev" id="framePrev" aria-label="Pichli photo">‹</button>
-        <button type="button" class="frame-nav frame-next" id="frameNext" aria-label="Agli photo">›</button>
-
-        <div class="frame-dots" id="frameDots">
-          {% for img in images %}
-          <button type="button" class="frame-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}" aria-label="Photo {{ forloop.counter }} dikhayein"></button>
-          {% endfor %}
-        </div>
-        {% endif %}
-      </div>
-    </div>
-
-    <!-- Desktop: text + quick-action cards side-by-side (no empty space).
-         Mobile: stacks — text first, then a 3-per-row card grid. -->
-    <div class="hero-below reveal">
-
-      <div class="hero-text-col">
         <div class="hero-eyebrow">Prajapati Foundation</div>
-        <h1>Ek Sangatit Samaj,<br>Ek Sashakt Bhavishya</h1>
+        <h1>Ek Sangatit Samaj,<br>Ek <span class="accent-text">Sashakt</span> Bhavishya</h1>
         <p class="hero-sub">
           Shiksha, kala aur samajik ekta ke madhyam se Kumhar samaj ka utthan —
           har parivaar ko ek behtar kal.
@@ -74,49 +48,84 @@
           <a href="{% url 'join' %}" class="btn btn-outline">Join Us →</a>
         </div>
 
-        <div class="hero-stats">
-          <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Members</div></div>
-          <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">Programs</div></div>
-          <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Transparent</div></div>
+        <div class="hero-stats-row">
+          <div class="stat-item"><strong>500+</strong><span>Members</span></div>
+          <span class="stat-divider" aria-hidden="true"></span>
+          <div class="stat-item"><strong>4+</strong><span>Programs</span></div>
+          <span class="stat-divider" aria-hidden="true"></span>
+          <div class="stat-item"><strong>100%</strong><span>Transparent</span></div>
         </div>
       </div>
 
-      <div class="hero-cards-col">
-        <div class="section-header">
-          <span class="tag">What We Do</span>
-          <h2>Hamare Karyakram</h2>
+      <!-- Image carousel column -->
+      <div class="hero-visual reveal">
+        <div class="hero-frame" id="heroFrame">
+          {% for img in images %}
+          <div class="frame-slide {% if forloop.first %}active{% endif %}">
+            <img class="frame-img" src="{{ img.image.url }}" alt="Prajapati Foundation" {% if not forloop.first %}loading="lazy"{% endif %}>
+          </div>
+          {% empty %}
+          <div class="frame-slide active">
+            <img class="frame-img" src="{% static 'assets/images/hero.jpg' %}" alt="Prajapati Foundation">
+          </div>
+          {% endfor %}
+
+          {% if images|length > 1 %}
+          <button type="button" class="frame-nav frame-prev" id="framePrev" aria-label="Pichli photo">‹</button>
+          <button type="button" class="frame-nav frame-next" id="frameNext" aria-label="Agli photo">›</button>
+
+          <div class="frame-dots" id="frameDots">
+            {% for img in images %}
+            <button type="button" class="frame-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}" aria-label="Photo {{ forloop.counter }} dikhayein"></button>
+            {% endfor %}
+          </div>
+          {% endif %}
         </div>
 
-        <div class="qa-grid">
-          <a href="{% url 'education' %}" class="qa-card">
-            <div class="qa-icon">🎓</div><h3>Education Support</h3><p>Scholarship & career guidance</p>
-          </a>
-          <a href="{% url 'about' %}" class="qa-card">
-            <div class="qa-icon">🏛️</div><h3>Community Programs</h3><p>Samajik utthan ke liye</p>
-          </a>
-          <a href="{% url 'artisan_support' %}" class="qa-card">
-            <div class="qa-icon">🧱</div><h3>Artisan Support</h3><p>Kumhar kala sanrakshan</p>
-          </a>
-          <a href="{% url 'gallery' %}" class="qa-card">
-            <div class="qa-icon">🎉</div><h3>Community Events</h3><p>Programs & celebrations</p>
-          </a>
-          <a href="{% url 'donation' %}" class="qa-card">
-            <div class="qa-icon">💰</div><h3>Donations</h3><p>Support our mission</p>
-          </a>
-          <a href="{% url 'news' %}" class="qa-card">
-            <div class="qa-icon">📰</div><h3>Latest News</h3><p>Community updates</p>
-          </a>
-          <a href="{% url 'join' %}" class="qa-card">
-            <div class="qa-icon">🤝</div><h3>Volunteer</h3><p>Apna time dein</p>
-          </a>
-          <a href="{% url 'about' %}" class="qa-card">
-            <div class="qa-icon">👥</div><h3>About Us</h3><p>Our team & mission</p>
-          </a>
+        <div class="hero-badge">
+          <span class="hero-badge-icon">🏺</span>
+          <div><strong>500+</strong><span>Kumhar parivaaron tak pahunch</span></div>
         </div>
       </div>
 
     </div>
+  </div>
+</section>
 
+<section class="quick-actions">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <span class="tag">What We Do</span>
+      <h2>Hamare Karyakram</h2>
+      <p>Prajapati samaj ke upliftment ke liye hum yeh programs chalate hain.</p>
+    </div>
+
+    <div class="qa-grid">
+      <a href="{% url 'education' %}" class="qa-card reveal">
+        <div class="qa-icon">🎓</div><h3>Education Support</h3><p>Scholarship & career guidance</p>
+      </a>
+      <a href="{% url 'about' %}" class="qa-card reveal">
+        <div class="qa-icon">🏛️</div><h3>Community Programs</h3><p>Samajik utthan ke liye</p>
+      </a>
+      <a href="{% url 'artisan_support' %}" class="qa-card reveal">
+        <div class="qa-icon">🧱</div><h3>Artisan Support</h3><p>Kumhar kala sanrakshan</p>
+      </a>
+      <a href="{% url 'gallery' %}" class="qa-card reveal">
+        <div class="qa-icon">🎉</div><h3>Community Events</h3><p>Programs & celebrations</p>
+      </a>
+      <a href="{% url 'donation' %}" class="qa-card reveal">
+        <div class="qa-icon">💰</div><h3>Donations</h3><p>Support our mission</p>
+      </a>
+      <a href="{% url 'news' %}" class="qa-card reveal">
+        <div class="qa-icon">📰</div><h3>Latest News</h3><p>Community updates</p>
+      </a>
+      <a href="{% url 'join' %}" class="qa-card reveal">
+        <div class="qa-icon">🤝</div><h3>Volunteer</h3><p>Apna time dein</p>
+      </a>
+      <a href="{% url 'about' %}" class="qa-card reveal">
+        <div class="qa-icon">👥</div><h3>About Us</h3><p>Our team & mission</p>
+      </a>
+    </div>
   </div>
 </section>
 
